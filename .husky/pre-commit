@@ -1,0 +1,10 @@
+# Check branch name
+branch="$(git rev-parse --abbrev-ref HEAD)"
+
+if [ "$branch" = "main" ] || [ "$branch" = "stage" ] || [ "$branch" = "dev" ]; then
+  echo "You can't commit directly to $branch branch"
+  exit 1
+fi
+
+# Run lint-staged
+npx lint-staged
